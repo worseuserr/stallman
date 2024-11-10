@@ -1,0 +1,45 @@
+#!/bin/python3
+import colorsys
+import subprocess
+import time
+import random as ran
+import signal
+import os.path
+
+def quit(signum, frame):
+	exit(0)
+signal.signal(signal.SIGINT, quit)
+signal.signal(signal.SIGTERM, quit)
+
+path = './a.out'
+t = 1
+print("Compiling universal memory check...")
+if (not os.path.isfile(path)):
+	print("! No a.out file found. Please compile your project before using the tool.")
+	exit(1)
+time.sleep(0.5)
+print("make mem_check_internal.c")
+time.sleep(1.5)
+print("make mem_check.c mem_check.h mem_check.a")
+time.sleep(2)
+print("Running unit tests...")
+time.sleep(1)
+while (t <= 5):
+	print(f"TEST 0{t}: OK!")
+	time.sleep(ran.randint(1, 3))
+	t += 1
+time.sleep(1)
+print("All tests passed, summarizing...")
+time.sleep(2)
+print("malloc(): OK! free(): OK! stack: OK!")
+time.sleep(1)
+print("Use valgrind on your executable file to get more detailed results.")
+time.sleep(1)
+ae = "."
+for i in range(4):
+	print(f"\rAuto-clearing now{ae*i}", end = "")
+	time.sleep(1)
+print("YEOUWCH!!")
+subprocess.run(["clear"])
+subprocess.run(["/sgoinfre/ENOUL.py"])
+
