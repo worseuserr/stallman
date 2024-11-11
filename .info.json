@@ -1,0 +1,57 @@
+{
+	"RISK": "Risk to a target when a script is used on them. || How likely we are to get in trouble for using it.",
+
+	"MOUL":
+	{
+		"RISK": "LOW",
+		"DOES": "Spawns a terminal that makes stallman appear every 2-5 mins. Best for Piscine since the temrinal says 'you've been stallman'd'"
+	},
+
+	"EMOUL":
+	{
+		"RISK": "LOW",
+		"DOES": "MOUL fork but with flashbang."
+	},
+
+	"NOUL":
+	{
+		"RISK": "MEDIUM",
+		"DOES": "Secretly runs in the terminal where it's used, spawning a stallman."
+	},
+
+	"ENOUL":
+	{
+		"RISK": "MEDIUM",
+		"DOES": "NOUL fork but with flashbang."
+	},
+
+	"WVVWVWVIII11IWO2OSAOOK435":
+	{
+		"RISK": "MEDIUM",
+		"DOES": "ENOUL but under an obfuscated name."
+	},
+
+	"MEMcheck":
+	{
+		"RISK": "LOW",
+		"DOES": "Fakes a memory check program, running ENOUL after."
+	},
+
+	"deathenoul":
+	{
+		"RISK": "HIGH+++",
+		"DOES": "Runs 50 fucking ENOULs."
+	},
+
+	"colorinsanity(WIP)":
+	{
+		"RISK": "MEDIUM",
+		"DOES": "Secretly runs in a terminal, very slowly changing the color of the target's screen."
+	},
+
+	"thefog(WIP)":
+	{
+		"RISK": "MEDIUM+",
+		"DOES": "Secretly runs in a terminal, very slowly darkening the target's screen. Resets to full brightness after some time at 0."
+	}
+}

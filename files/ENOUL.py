@@ -43,7 +43,7 @@ signal.signal(signal.SIGTERM, quit)
 
 subprocess.run(["clear"])
 subprocess.Popen(["zsh"])
-time.sleep(90)
+time.sleep(10)
 while (True):
 	boom()
 	time.sleep(ran.randint(120, 500))
