@@ -17,10 +17,13 @@ def output(file, data):
 arg = sys.argv[1]
 count = 0
 border = 50
-if (arg[-3:] == '.py'):
+if (arg[-3:] == '.sm'):
 	arg = arg[:-3]
 with open('.info.json', 'r') as file:
 	infoList = json.load(file)
+	if (arg.lower() == "risk"):
+		print(f"{('-'*border)}\n\nEntry: RISK\n\n\tRISK: {infoList['RISK']}\n\n{'-'*border}")
+		exit(0)
 	for file, data in infoList.items():
 		if (arg.lower() in file.lower() or (arg == "all" and file != "RISK")):
 			count += 1
@@ -28,3 +31,4 @@ with open('.info.json', 'r') as file:
 	if (count == 0):
 		print(f"No entries found for '{arg}'.")
 		exit(1)
+	print('\n')

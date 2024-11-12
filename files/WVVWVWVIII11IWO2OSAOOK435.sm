@@ -4,6 +4,17 @@ import subprocess
 import time
 import random as ran
 import signal
+import sys
+
+def quit(signum, frame):
+	exit(0)
+signal.signal(signal.SIGINT, quit)
+signal.signal(signal.SIGTERM, quit)
+
+# run this file with argv '0' to not autoclear and remove history
+if (len(sys.argv) < 2 or sys.argv[1] != '0'):
+	subprocess.run(["clear"])
+	subprocess.Popen(["zsh"])
 
 valstart = 50
 gamstart = 2
@@ -15,7 +26,6 @@ by = 0.025
 def lerp(val, goal, t):
 	return val + (goal - val) * t
 
-#subprocess.run(["xrandr", "--output", "eDP", "--gamma", f"{val}:{val}:{val}"])
 def boom():
 	val = valstart * startmult
 	gam = gamstart * startmult
@@ -35,15 +45,7 @@ def boom():
 		time.sleep(0.01)
 	subprocess.run(["xrandr", "--output", "eDP", "--brightness", "1", "--gamma", "1"])
 
-
-def quit(signum, frame):
-	exit(0)
-signal.signal(signal.SIGINT, quit)
-signal.signal(signal.SIGTERM, quit)
-
-subprocess.run(["clear"])
-subprocess.Popen(["zsh"])
-time.sleep(10)
+time.sleep(90)
 while (True):
 	boom()
 	time.sleep(ran.randint(120, 500))

@@ -7,7 +7,7 @@ if [ ! -d "$TARGET_DIR" ]; then
   exit 1
 fi
 
-for file in files/*.py; do
+for file in files/*.sm; do
   if [ -f "$file" ]; then
     chmod 755 "$file"
     cp "$file" "$TARGET_DIR"
@@ -15,4 +15,4 @@ for file in files/*.py; do
   fi
 done
 
-echo "All .py files have been copied."
+echo "All .sm files have been copied."

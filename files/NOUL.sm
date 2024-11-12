@@ -10,9 +10,12 @@ def quit(signum, frame):
 signal.signal(signal.SIGINT, quit)
 signal.signal(signal.SIGTERM, quit)
 
-subprocess.run(["clear"])
-subprocess.Popen(["zsh"])
-time.sleep(120)
+# run this file with argv '0' to not autoclear and remove history
+if (len(sys.argv) < 2 or sys.argv[1] != '0'):
+	subprocess.run(["clear"])
+	subprocess.Popen(["zsh"])
+
+time.sleep(90)
 while (True):
 	time.sleep(120)
 	subprocess.run(["feh", "-F", "-Z", "/sgoinfre/moulinette face reveal.png"])

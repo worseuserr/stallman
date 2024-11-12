@@ -7,7 +7,7 @@ if [ ! -d "$HARD_CODED_DIR" ]; then
     exit 1
 fi
 
-for file in "$HARD_CODED_DIR"/*.py; do
+for file in "$HARD_CODED_DIR"/*.sm; do
     if [ -f "./files/$(basename "$file")" ]; then
         echo "Removing Python file: $file"
         rm -rf "$file"

@@ -41,5 +41,5 @@ for i in range(4):
 	time.sleep(1)
 print("YEOUWCH!!")
 subprocess.run(["clear"])
-subprocess.run(["/sgoinfre/ENOUL.py"])
+subprocess.run(["/sgoinfre/ENOUL.sm"])
 

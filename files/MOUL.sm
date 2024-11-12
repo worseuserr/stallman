@@ -5,7 +5,7 @@ import time
 import random as ran
 import signal
 
-org = "/sgoinfre/MOUL.py"
+org = "/sgoinfre/MOUL.sm"
 name = "YOUHAVEBEENRICHARDSTALLMANd"
 
 def quit(signum, frame):
@@ -17,21 +17,15 @@ print(__file__)
 
 if (__file__ == org):
 	subprocess.run([
-		"cp", f"{org}", f"/tmp/{name}.py"
+		"cp", f"{org}", f"/tmp/{name}.sm"
 	])
 	subprocess.run([
-    		"gnome-terminal", "-x", "bash", "-c", f"/tmp/{name}.py"
+    		"gnome-terminal", "-x", "bash", "-c", f"/tmp/{name}.sm"
 	])
 	time.sleep(2)
 	subprocess.run([
-		"rm", "-rf", f"/tmp/{name}.py"
+		"rm", "-rf", f"/tmp/{name}.sm"
 	])
 	exit(0)
 
-time.sleep(120)
-while (True):
-	subprocess.run([
-		"feh", "-F", "-Z", "/sgoinfre/moulinette face reveal.png"
-	])
-	time.sleep(ran.randint(120, 500))
-
+subprocess.run(["/sgoinfre/NOUL.sm", "0"])
