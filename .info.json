@@ -1,6 +1,6 @@
 {
 	"RISK": "Risk to a target when a script is used on them. || How likely we are to get in trouble for using it.",
-	
+
 	"MOUL":
 	{	"FILE": "MOUL.sm",
 		"RISK": "LOW",
@@ -16,13 +16,13 @@
 	"NOUL":
 	{	"FILE": "NOUL.sm",
 		"RISK": "MEDIUM",
-		"DOES": "Secretly runs in the terminal where it's used, spawning a stallman."
+		"DOES": "The base for all stallman scripts. Secretly runs in the terminal where it's used, spawning a stallman."
 	},
 
 	"ENOUL":
 	{	"FILE": "ENOUL.sm",
 		"RISK": "MEDIUM",
-		"DOES": "NOUL fork but with flashbang."
+		"DOES": "The base for all stallman flashbang scripts. NOUL fork but with flashbang."
 	},
 
 	"WVVWVWVIII11IWO2OSAOOK435":
