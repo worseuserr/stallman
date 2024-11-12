@@ -2,56 +2,62 @@
 	"RISK": "Risk to a target when a script is used on them. || How likely we are to get in trouble for using it.",
 
 	"MOUL":
-	{
+	{	"FILE": "MOUL.py",
 		"RISK": "LOW",
 		"DOES": "Spawns a terminal that makes stallman appear every 2-5 mins. Best for Piscine since the temrinal says 'you've been stallman'd'"
 	},
 
 	"EMOUL":
-	{
+	{	"FILE": "EMOUL.py",
 		"RISK": "LOW",
 		"DOES": "MOUL fork but with flashbang."
 	},
 
 	"NOUL":
-	{
+	{	"FILE": "NOUL.py",
 		"RISK": "MEDIUM",
 		"DOES": "Secretly runs in the terminal where it's used, spawning a stallman."
 	},
 
 	"ENOUL":
-	{
+	{	"FILE": "ENOUL.py",
 		"RISK": "MEDIUM",
 		"DOES": "NOUL fork but with flashbang."
 	},
 
 	"WVVWVWVIII11IWO2OSAOOK435":
-	{
+	{	"FILE": "WVVWVWVIII11IWO2OSAOOK435.py",
 		"RISK": "MEDIUM",
 		"DOES": "ENOUL but under an obfuscated name."
 	},
 
 	"MEMcheck":
-	{
+	{	"FILE": "MEMcheck.py",
 		"RISK": "LOW",
 		"DOES": "Fakes a memory check program, running ENOUL after."
 	},
 
 	"deathenoul":
-	{
+	{	"FILE": "deathenoul.py",
 		"RISK": "HIGH+++",
 		"DOES": "Runs 50 fucking ENOULs."
 	},
 
 	"colorinsanity(WIP)":
-	{
+	{	"FILE": "colorinsanity.py",
 		"RISK": "MEDIUM",
-		"DOES": "Secretly runs in a terminal, very slowly changing the color of the target's screen."
+		"DOES": "Secretly runs in the terminal, very slowly changing the color of the target's screen."
 	},
 
-	"thefog(WIP)":
-	{
+	"thefog(SOON)":
+	{	"FILE": "thefog.py",
 		"RISK": "MEDIUM+",
-		"DOES": "Secretly runs in a terminal, very slowly darkening the target's screen. Resets to full brightness after some time at 0."
+		"DOES": "Secretly runs in the terminal, very slowly darkening the target's screen. Resets to full brightness after some time at 0."
+	},
+
+	"sys_key":
+	{	"FILE": "sys_key.py",
+		"RISK": "DO NOT",
+		"DOES": "Recursively spawns xrandr, itself, and disables all user input. Result can vary from inability to log out to completely crashing the pc."
 	}
 }
