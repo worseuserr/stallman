@@ -9,4 +9,3 @@ sleep $1
 ./remove.sh
 
 echo "Time over, files removed."
-
