@@ -8,7 +8,7 @@ if [ ! -d "$TARGET_DIR" ]; then
 fi
 
 for file in "$TARGET_DIR"/*.sm; do
-	if [ -f "./files/$(basename "$file")" ]; then
+	if [ -f "./scripts/$(basename "$file")" ]; then
 		echo "Removing Python file: $file"
 		rm -rf "$file"
 	fi

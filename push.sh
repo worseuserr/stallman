@@ -7,7 +7,7 @@ if [ ! -d "$TARGET_DIR" ]; then
 	exit 1
 fi
 
-for file in files/*.sm; do
+for file in scripts/*.sm; do
 	if [ -f "$file" ]; then
 		chmod 755 "$file"
 		cp "$file" "$TARGET_DIR"
