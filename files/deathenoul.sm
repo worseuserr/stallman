@@ -7,4 +7,3 @@ while (i <= 50):
 	subprocess.Popen(["gnome-terminal", "-x", "bash", "-c", f"/sgoinfre/ENOUL.sm"])
 	i += 1
 	time.sleep(0.01)
-

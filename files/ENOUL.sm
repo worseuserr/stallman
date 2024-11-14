@@ -1,5 +1,4 @@
 #!/bin/python3
-import colorsys
 import subprocess
 import time
 import random as ran

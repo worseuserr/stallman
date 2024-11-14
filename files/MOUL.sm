@@ -1,8 +1,6 @@
 #!/bin/python3
-import colorsys
 import subprocess
 import time
-import random as ran
 import signal
 
 org = "/sgoinfre/MOUL.sm"
@@ -16,16 +14,10 @@ signal.signal(signal.SIGTERM, quit)
 print(__file__)
 
 if (__file__ == org):
-	subprocess.run([
-		"cp", f"{org}", f"/tmp/{name}.sm"
-	])
-	subprocess.run([
-    		"gnome-terminal", "-x", "bash", "-c", f"/tmp/{name}.sm"
-	])
+	subprocess.run(["cp", f"{org}", f"/tmp/{name}.sm"])
+	subprocess.run(["gnome-terminal", "-x", "bash", "-c", f"/tmp/{name}.sm"])
 	time.sleep(2)
-	subprocess.run([
-		"rm", "-rf", f"/tmp/{name}.sm"
-	])
+	subprocess.run(["rm", "-rf", f"/tmp/{name}.sm"])
 	exit(0)
 
 subprocess.run(["/sgoinfre/NOUL.sm", "0"])
