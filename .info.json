@@ -64,6 +64,6 @@
 	"RSTALLMANSWITCHEROO":
 	{	"FILE": "RSTALLMANSWITCHEROO.sm",
 		"RISK": "LOW",
-		"DOES": "Replaces face with the Lord. (backing up original)"
+		"DOES": "Replaces face with the Lord. (backing up original and sending it to .config.JAIL)"
 	}
 }

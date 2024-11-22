@@ -1,13 +1,13 @@
 #!/bin/bash
 
-TARGET_DIR="/sgoinfre"
+TARGET_DIR=$(awk '$1=="SGOINFRE"{print $2}' .config)
 
 if [ ! -d "$TARGET_DIR" ]; then
-	echo "$TARGET_DIR not found, wtf??"
+	echo "sgoinfre not found, wtf??"
 	exit 1
 fi
 
-for file in scripts/*.sm; do
+for file in $(awk '$1=="SCRIPTS"{print $2}' .config)/*.sm; do
 	if [ -f "$file" ]; then
 		chmod 755 "$file"
 		cp "$file" "$TARGET_DIR"
@@ -15,4 +15,4 @@ for file in scripts/*.sm; do
 	fi
 done
 
-echo "All .sm files have been copied."
+echo "All stallman files have been copied."
