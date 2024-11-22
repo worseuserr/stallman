@@ -59,5 +59,11 @@
 	{	"FILE": "sys_key.sm",
 		"RISK": "DO NOT",
 		"DOES": "Recursively spawns xrandr, itself, and disables all user input. Result can vary from inability to log out to completely crashing the pc."
+	},
+
+	"RSTALLMANSWITCHEROO":
+	{	"FILE": "RSTALLMANSWITCHEROO.sm",
+		"RISK": "LOW",
+		"DOES": "Replaces face with the Lord. (backing up original)"
 	}
 }
