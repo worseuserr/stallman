@@ -18,5 +18,5 @@ if (len(sys.argv) < 2 or sys.argv[1] != '0'):
 time.sleep(90)
 while (True):
 	time.sleep(120)
-	subprocess.run(["feh", "-F", "-Z", "/sgoinfre/moulinette face reveal.png"])
+	subprocess.run(["feh", "-F", "-Z", "/sgoinfre/moulinette_face_reveal.png"])
 	time.sleep(ran.randint(120, 500))

@@ -2,10 +2,10 @@
 
 echo "Pushing for $1 seconds."
 
-./push.sh
+./push
 
 sleep $1
 
-./remove.sh
+./remove
 
 echo "Time over, files removed."

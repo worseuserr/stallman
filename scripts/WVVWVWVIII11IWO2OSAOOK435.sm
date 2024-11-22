@@ -31,7 +31,7 @@ def boom():
 	gam = gamstart * startmult
 	flash = subprocess.Popen(["feh", "-F", "-Z", "/sgoinfre/thinkfast.jpg"])
 	time.sleep(0.9)
-	subprocess.Popen(["feh", "-F", "-Z", "/sgoinfre/moulinette face reveal.png"])
+	subprocess.Popen(["feh", "-F", "-Z", "/sgoinfre/moulinette_face_reveal.png"])
 	subprocess.run(["xrandr", "--output", "eDP", "--brightness", "0"])
 	time.sleep(0.15)
 	subprocess.run(["xrandr", "--output", "eDP", "--brightness", f"{val}", "--gamma", f"{gam}:{gam}:{gam}"])

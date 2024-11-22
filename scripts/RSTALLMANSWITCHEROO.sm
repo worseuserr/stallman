@@ -6,7 +6,7 @@ import random as ran
 import signal
 import os
 
-loc = "/sgoinfre/moulinette face reveal.png"
+loc = "/sgoinfre/moulinette_face_reveal.png"
 username = os.getlogin()
 
 

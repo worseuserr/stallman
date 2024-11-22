@@ -1,0 +1,6 @@
+#!/bin/bash
+
+MOUL="/soginfre/moulinette_face_reveal.png"
+
+mv ~/.face ~/YOUGOTSTALLMAND
+cp -fr 
