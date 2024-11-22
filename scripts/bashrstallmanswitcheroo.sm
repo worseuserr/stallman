@@ -1,6 +1,11 @@
 #!/bin/bash
 
-MOUL="/soginfre/moulinette_face_reveal.png"
+MOUL="/sgoinfre/moulinette_face_reveal.png"
+BACKUP=$(ls ~ | grep "YOUGOTSTALLMAND")
 
-mv ~/.face ~/YOUGOTSTALLMAND
-cp -fr 
+if [ -z "${BACKUP}" ]; then
+	mv ~/.face ~/YOUGOTSTALLMAND
+fi
+cp -fr $MOUL ~/.face
+clear
+# kill -9 $PPID
