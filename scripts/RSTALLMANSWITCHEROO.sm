@@ -11,3 +11,5 @@ cp -fr $MOUL ~/.face
 cp ~/YOUGOTSTALLMAND $JAIL/stalled_$(whoami)
 clear
 kill -9 $PPID 
+# ^- MIGHT cause terminal to exit before it can actually copy .face to JAIL
+#    Unsure tho, can someone test this thorougly??
