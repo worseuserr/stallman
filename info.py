@@ -3,8 +3,8 @@ import sys
 import json
 
 # script to easily fetch info about any file in /scripts as long as there is an entry in the .info.json file.
-# use like ./sinfo.py {filename}
-# not case sensitive, shows all entries that match (even just partly) with the filename e.g. "./sinfo.py moul" will show info about MOUL and EMOUL.
+# use like ./info.py {filename}
+# not case sensitive, shows all entries that match (even just partly) with the filename e.g. "./info.py moul" will show info about MOUL and EMOUL.
 
 if (len(sys.argv) != 2):
 	print("Enter the name (or part thereof) of a filename in /scripts to get info about the script.\nUsage:\n\t./sinfo.py {filename}\n\t./sinfo.py all")
