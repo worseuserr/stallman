@@ -16,3 +16,7 @@ INSTALL_DIR="INSTALLDIRPLACEHOLDER"
 
 gnome-terminal --working-directory=$INSTALL_DIR
 kill -9 $PPID
+
+# NOTE TO SELF:
+#   CHANGES TO THIS FILE REQUIRE RE-AUTOSETUP AFTER PULLING
+#   Prevent this by moving the directory info to a file in home instead!! (soon)
