@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#  This file autoconfigures the Lord's repository to be mounted in home.
+#  Creates a launcher in home called sm, so you can do ./sm in a new terminal open it in the repo.
+#  DO NOT run this setup from the autoconfigured folder, idk what can happen.
+
+DIR=$(awk '$1=="AUTODIR"{print $2}' .config | sed "s,~,/home/$(whoami),")
+CMD=$(awk '$1=="AUTOCMD"{print $2}' .config)
+
+printf "Config:\n  Directory: $DIR\n  Stallman command: $CMD\n"
+sleep 1.5
+echo Creating directory...
+sleep 0.5
+mkdir -p $DIR
+sleep 0.5
+echo Copying stallman...
+sleep 0.5
+cp -r . $DIR
+sleep 0.5
+echo Creating home script for launching stallman...
+sleep 0.5
+cp $DIR/.launcher ~/$CMD
+sleep 0.5
+echo Complete!
+sleep 0.5
+echo Run ./$CMD in a new terminal to automatically start a stallman session.
