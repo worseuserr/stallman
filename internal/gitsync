@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#  This script ensures your repo is updated BEFORE running any command which pushes to sgoinfre.
+CMD=$1
+git pull
+shift
+./$CMD --force $@
