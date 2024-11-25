@@ -4,5 +4,6 @@
 CMD=$1
 git fetch origin master
 git reset --soft FETCH_HEAD
+git pull
 shift
 ./$CMD --force $@
