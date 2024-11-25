@@ -36,8 +36,6 @@ sleep 0.4
 echo Copying stallman...
 sleep 0.4
 cp -r . $DIR
-sed -i 's/DEBUG\s*true/DEBUG	false/' $DIR/.config
-rm -rf $DIR/.git $DIR/.autosetup
 sleep 0.4
 echo Creating home script for launching stallman...
 sleep 0.4
