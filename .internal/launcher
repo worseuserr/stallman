@@ -14,27 +14,8 @@
 INSTALL_DIR="INSTALLDIRPLACEHOLDER"
 # Is automatically set to the correct install dir when you run autosetup (as long as you leave it as INSTALLDIRPLACEHOLDER).
 
-cd ~/${INSTALL_DIR}
-# Fetch the latest changes from the remote without modifying local files
-# git fetch
-
-# # Check if there are any differences between the local and remote branches
-# git diff --quiet HEAD/$(git rev-parse --abbrev-ref HEAD)
-# if git diff --quiet HEAD/$(git rev-parse --abbrev-ref HEAD); then
-#   UPDATED=$(printf "No changes to pull.")
-# else
-#   UPDATED=$(printf "There are changes to pull.")
-# fi
-if git fetch --dry-run | grep -q '.'; then
-    UPDATED=$(printf "$(tput setaf 1)Outdated! Pull newest.")
-else
-    UPDATED=$(printf "Up to date.")
-fi
-
-# UPDATED=$([[ $(cd ~/${INSTALL_DIR} && git pull -q | awk 'NR==3{print}') == "Already up to date." ]] && printf "Up to date." || printf "$(tput setaf 1)Outdated! Pull newest.")
-
 gnome-terminal --title="STALLMAN" --working-directory=$INSTALL_DIR -- bash -c \
 "printf '\n  $(tput setaf 6)$(tput bold)STALLMAN inc. terminal.$(tput sgr0)$(tput setaf 6)\n  Running in: ~/$INSTALL_DIR \
-\n  ${UPDATED}$(tput sgr0)\n\n'; exec zsh"
+$(tput sgr0)\n\n'; exec zsh"
 
 # kill -9 $PPID

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# This script parses all clobal variables in a bash script according to .config
+# Allows %JAIL% to be converted to /thestalledones/ in any script. (untested with python)
+# Format: %NAME% where NAME is the exact same as in .config, gets replaced by the right hand side value in .config.
+
+FILE=$1
+awk '{print $1}' .config | while IFS= read -r ENTRY; do
+	VALUE=$(awk -v entry="$ENTRY" '$1==entry{print $2}' .config)
+	sed -i "s,%$ENTRY%,$VALUE," $FILE
+done

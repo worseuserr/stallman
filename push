@@ -10,10 +10,13 @@ if [ ! -d "$TARGET_DIR" ]; then
 	exit 1
 fi
 
-for file in $(awk '$1=="SCRIPTS"{print $2}' .config)/*.sm; do
+SCRIPTS=$(awk '$1=="SCRIPTS"{print $2}' .config)
+for file in $SCRIPTS/*.sm; do
 	if [ -f "$file" ]; then
 		chmod 755 "$file"
 		cp "$file" "$TARGET_DIR"
+		FILENAME="$TARGET_DIR$(echo $file | sed "s,$SCRIPTS,,")"
+		./.internal/parseglobals $FILENAME
 		echo "Copied: $file"
 	fi
 done

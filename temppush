@@ -8,7 +8,6 @@
 # 	exec ./.internal/gitsync $(basename $0) $@
 # fi
 
-shift
 echo "Pushing for $1 seconds."
 
 ./push --force
