@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# This script parses all global variables in a bash script according to .config
-# Allows %JAIL% to be converted to /thestalledones/ in any script. (untested with python but will likely work with every script)
+# This script parses all global variables in a script according to .config
+# Allows %JAIL% to be converted to /thestalledones/ in any script.
 # Format: %NAME% where NAME is the exact same as in .config, gets replaced by the right hand side value in .config.
+# Works with both bash and python scripts as it literally edits the script after putting it in sgoinfre.
 
 FILE=$1
 awk '{print $1}' .config | while IFS= read -r ENTRY; do

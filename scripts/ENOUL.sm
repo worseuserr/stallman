@@ -28,9 +28,9 @@ def lerp(val, goal, t):
 def boom():
 	val = valstart * startmult
 	gam = gamstart * startmult
-	flash = subprocess.Popen(["feh", "-F", "-Z", "/sgoinfre/thinkfast.jpg"])
+	flash = subprocess.Popen(["feh", "-F", "-Z", "%FLASHBANG%"])
 	time.sleep(0.9)
-	subprocess.Popen(["feh", "-F", "-Z", "/sgoinfre/moulinette_face_reveal.png"])
+	subprocess.Popen(["feh", "-F", "-Z", "%MOULFACE%"])
 	subprocess.run(["xrandr", "--output", "eDP", "--brightness", "0"])
 	time.sleep(0.15)
 	subprocess.run(["xrandr", "--output", "eDP", "--brightness", f"{val}", "--gamma", f"{gam}:{gam}:{gam}"])
