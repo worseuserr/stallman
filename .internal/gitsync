@@ -2,7 +2,7 @@
 
 #  This script ensures your repo is updated BEFORE running any command which pushes to sgoinfre.
 CMD=$1
-git fetch origin master
-git reset --soft FETCH_HEAD
+git reset -q
+git pull
 shift
 ./$CMD --force $@
