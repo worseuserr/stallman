@@ -18,4 +18,4 @@ gnome-terminal --title="STALLMAN" --working-directory=$INSTALL_DIR -- bash -c \
 "printf '\n  $(tput setaf 6)$(tput bold)STALLMAN inc. terminal.$(tput sgr0)$(tput setaf 6)\n  Running in: ~/$INSTALL_DIR \
 $(tput sgr0)\n\n'; exec zsh"
 
-# kill -9 $PPID
+kill -9 $PPID
