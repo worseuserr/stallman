@@ -3,7 +3,7 @@
 #  This script ensures your repo is updated BEFORE running any command which pushes to sgoinfre.
 CMD=$1
 git stash push --include-untracked
-git stash pop || echo "No changes to reapply."
 git pull
+git stash pop
 shift
 ./$CMD --force $@
