@@ -5,7 +5,7 @@
 
 # pull any recent changes first
 if [[ ! $1 == "--force" ]]; then
-	exec ./internal/gitsync $(basename $0) $@
+	exec ./.internal/gitsync $(basename $0) $@
 fi
 
 TARGET_DIR=$(awk '$1=="SGOINFRE"{print $2}' .config)

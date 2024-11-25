@@ -36,7 +36,7 @@ cp -r . $DIR
 sleep 0.5
 echo Creating home script for launching stallman...
 sleep 0.5
-cp $DIR/internal/launcher ~/$CMD
+cp $DIR/.internal/launcher ~/$CMD
 sed -i "s,INSTALLDIRPLACEHOLDER,$(awk '$1=="AUTODIR"{print $2}' .config)," ~/$CMD
 sleep 0.5
 echo Complete!
