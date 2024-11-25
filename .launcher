@@ -8,9 +8,10 @@
 #
 #   NOTE: Add to PATH if you find a way to. Otherwise add to home and only use ./sm in new terminals.
 #         (because terminal starts in /home)
+#
 
 # Automatically starts at ~, so ~/Documents/ would be just Documents/
-INSTALL_DIR="Documents/example/stallman"
+INSTALL_DIR=".stallman"
 
 gnome-terminal --working-directory=$INSTALL_DIR
 kill -9 $PPID
