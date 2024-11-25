@@ -15,6 +15,16 @@ INSTALL_DIR="INSTALLDIRPLACEHOLDER"
 # Is automatically set to the correct install dir when you run autosetup (as long as you leave it as INSTALLDIRPLACEHOLDER).
 
 cd ~/${INSTALL_DIR}
+# Fetch the latest changes from the remote without modifying local files
+# git fetch
+
+# # Check if there are any differences between the local and remote branches
+# git diff --quiet HEAD/$(git rev-parse --abbrev-ref HEAD)
+# if git diff --quiet HEAD/$(git rev-parse --abbrev-ref HEAD); then
+#   UPDATED=$(printf "No changes to pull.")
+# else
+#   UPDATED=$(printf "There are changes to pull.")
+# fi
 if git fetch --dry-run | grep -q '.'; then
     UPDATED=$(printf "$(tput setaf 1)Outdated! Pull newest.")
 else
