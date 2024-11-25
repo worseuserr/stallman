@@ -4,7 +4,7 @@
 CMD=$1
 git fetch origin master
 git stash push --include-untracked
-git reset --hard origin/master
+git reset --hard HEAD
 git stash drop
 git pull
 shift
