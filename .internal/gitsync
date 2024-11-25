@@ -4,6 +4,5 @@
 CMD=$1
 git stash push --include-untracked
 git pull
-git stash pop
 shift
 ./$CMD --force $@
