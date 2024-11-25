@@ -4,6 +4,7 @@
 CMD=$1
 git stash push --include-untracked
 git stash drop
+git stash pop || echo "No changes to reapply."
 git pull
 shift
 ./$CMD --force $@
