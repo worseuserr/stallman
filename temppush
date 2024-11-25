@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# This script only pulls once because if, for example, the file extension of the
-# script changed after pulling; the script wouldnt remove the files with the old extension.
-
-# pull any recent changes first
-# if [[ ! $1 == "--force" ]]; then
-# 	exec ./.internal/gitsync $(basename $0) $@
-# fi
-
 echo "Pushing for $1 seconds."
 
 ./push --force
