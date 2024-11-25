@@ -9,7 +9,7 @@ fi
 
 for file in "$TARGET_DIR"/*.sm; do
 	if [ -f "$(awk '$1=="SCRIPTS"{print $2}' .config)/$(basename "$file")" ]; then
-		echo "Removing stallman file: $file"
+		echo "Removed: $file"
 		rm -rf "$file"
 	fi
 done
