@@ -1,9 +1,8 @@
 #!/bin/bash
 
-#  This script ensures your repo is updated BEFORE running any command which pushes to sgoinfre.
+#  This script ensures your repo is updated BEFORE running anything important.
 CMD=$1
 if [[ ! $(awk '$1=="DEBUG"{print $2}' .config) == "true" ]]; then
-	git stash push --include-untracked
 	git pull
 fi
 shift

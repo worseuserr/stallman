@@ -14,6 +14,11 @@
 #  DO NOT make changes to the repo in the installation folder.
 #  DO NOT commit anything from the installation folder.
 
+if [[ ! $1 == "--force" ]]; then
+	exec ./.internal/gitsync $(basename $0) $@
+fi
+shift
+
 DIR="/home/$(whoami)/$(awk '$1=="AUTODIR"{print $2}' .config)"
 CMD=$(awk '$1=="AUTOCMD"{print $2}' .config)
 
@@ -28,20 +33,22 @@ if [[ $1 == "uninstall" ]] || [[ $1 == "reinstall" ]]; then
 fi
 
 printf "Config:\n  Directory: $DIR\n  Stallman command: $CMD\n"
-sleep 1.5
+sleep 1.4
 echo Creating directory...
-sleep 0.5
+sleep 0.4
 mkdir -p $DIR
-sleep 0.5
+sleep 0.4
 echo Copying stallman...
-sleep 0.5
+sleep 0.4
 cp -r . $DIR
-sleep 0.5
+sed -i 's/DEBUG\s*true/DEBUG	false/' $DIR/.config
+rm -rf $DIR/.git
+sleep 0.4
 echo Creating home script for launching stallman...
-sleep 0.5
+sleep 0.4
 cp $DIR/.internal/launcher ~/$CMD
 sed -i "s,INSTALLDIRPLACEHOLDER,$(awk '$1=="AUTODIR"{print $2}' .config)," ~/$CMD
-sleep 0.5
+sleep 0.4
 echo Complete!
-sleep 0.5
+sleep 0.1
 echo Run ./$CMD in a new terminal to automatically start a stallman session.
