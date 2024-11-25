@@ -4,8 +4,8 @@
 CMD=$1
 git fetch origin master
 git stash push --include-untracked
-git reset --hard origin master
+git reset --hard origin/master
 git stash drop
-git pull origin master
+git pull
 shift
 ./$CMD --force $@
