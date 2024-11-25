@@ -9,7 +9,9 @@
 
 #  This file autoconfigures the Lord's repository to be mounted in home.
 #  Creates a launcher in home called sm, so you can do ./sm in a new terminal open it in the repo.
-#  DO NOT run this setup from the autoconfigured folder, idk what can happen.
+
+#  DO NOT run this setup from the installation folder, idk what can happen.
+#  DO NOT make changes to the repo in the installation folder.
 
 DIR="/home/$(whoami)/$(awk '$1=="AUTODIR"{print $2}' .config)"
 CMD=$(awk '$1=="AUTOCMD"{print $2}' .config)
