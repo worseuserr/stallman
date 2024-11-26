@@ -4,7 +4,7 @@
 	"MOUL":
 	{	"FILE": "MOUL.sm",
 		"RISK": "LOW",
-		"DOES": "Spawns a terminal that makes stallman appear every 2-5 mins. Best for Piscine since the temrinal says 'you've been stallman'd'"
+		"DOES": "Spawns a terminal that makes stallman appear every 2-5 mins.\nBest for Piscine since the temrinal says 'you've been stallman'd'"
 	},
 
 	"EMOUL":
@@ -16,7 +16,7 @@
 	"NOUL":
 	{	"FILE": "NOUL.sm",
 		"RISK": "MEDIUM",
-		"DOES": "The base for all stallman scripts. Secretly runs in the terminal where it's used, spawning a stallman."
+		"DOES": "The base for all stallman scripts. Secretly runs in the terminal\nwhere it's used, spawning a stallman."
 	},
 
 	"ENOUL":
@@ -43,22 +43,16 @@
 		"DOES": "Runs 50 fucking ENOULs."
 	},
 
-	"colorinsanity(WIP)":
-	{	"FILE": "colorinsanity.sm",
-		"RISK": "MEDIUM",
-		"DOES": "Secretly runs in the terminal, very slowly changing the color of the target's screen."
-	},
-
-	"thefog(SOON)":
+	"thefog":
 	{	"FILE": "thefog.sm",
 		"RISK": "MEDIUM+",
-		"DOES": "Secretly runs in the terminal, very slowly darkening the target's screen. Resets to full brightness after some time at 0."
+		"DOES": "Secretly runs in the terminal, very slowly darkening the target's screen.\nResets to full brightness after some time at 0 brightness."
 	},
 
 	"sys_key":
 	{	"FILE": "sys_key.sm",
 		"RISK": "DO NOT",
-		"DOES": "Recursively spawns xrandr, itself, and disables all user input. Result can vary from inability to log out to completely crashing the pc."
+		"DOES": "Recursively spawns xrandr, itself, and disables all user input.\nResult can vary from inability to log out to completely crashing the pc."
 	},
 
 	"RSTALLMANSWITCHEROO":
