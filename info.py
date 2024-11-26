@@ -11,7 +11,8 @@ if (len(sys.argv) != 2):
 	exit(1)
 
 def output(file, data):
-	strn = f"{('-'*border) if count<2 else ''}\n\nEntry: {file}\n\n\tFile name:   {data['FILE']}\n\tRisk:        {data['RISK']}\n\tDescription: {data['DOES']}\n\n{'-'*border}"
+	does = data['DOES'].replace("\n", f"\n\t{' '*len('Description: ')}")
+	strn = f"{('-'*border) if count<2 else ''}\n\nEntry: {file}\n\n\tFile name:   {data['FILE']}\n\tRisk:        {data['RISK']}\n\tDescription: {does}\n\n{'-'*border}"
 	print(strn, end = '')
 
 arg = sys.argv[1]
