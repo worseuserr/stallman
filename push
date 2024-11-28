@@ -11,13 +11,14 @@ if [ ! -d "$TARGET_DIR" ]; then
 fi
 
 SCRIPTS=$(awk '$1=="SCRIPTS"{print $2}' .config)
-for file in $SCRIPTS/*.sm; do
-	if [ -f "$file" ]; then
-		chmod 755 "$file"
-		cp "$file" "$TARGET_DIR"
-		FILENAME="$TARGET_DIR$(echo $file | sed "s,$SCRIPTS,,")"
-		./.internal/parseglobals $FILENAME
-		echo "Copied: $file"
+for FILEPATH in $SCRIPTS/*.sm; do
+	if [ -f "$FILEPATH" ]; then
+		chmod 755 "$FILEPATH"
+		FILE="${FILEPATH##*/}"
+		FILE=$(echo $(./.internal/obfuscate $FILE))
+		cp "$FILEPATH" "$TARGET_DIR/$FILE"
+		./.internal/parseglobals "$TARGET_DIR/$FILE"
+		printf "Copied: %-35s to $FILE\n" $FILEPATH
 	fi
 done
 

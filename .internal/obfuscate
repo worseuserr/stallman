@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#  Obfuscator to turn script names into total gibberish when in /sgoinfre/
+#  Keeps the first n characters the same for autofill, n being the value of .config.OBFUSKEEP
+
+OBFUSCATE=$(awk '$1=="OBFUSCATE"{print $2}' .config)
+LENGTH=$(awk '$1=="OBFUSLENGTH"{print $2}' .config)
+KEEP=$(awk '$1=="OBFUSKEEP"{print $2}' .config)
+START=$(echo $1 | head -c2)
+
+if [[ ! $OBFUSCATE == "true" ]]; then
+	echo $1
+	exit 0
+fi
+
+OUT=$START$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c $(($LENGTH - $KEEP)))
+echo $OUT.sm

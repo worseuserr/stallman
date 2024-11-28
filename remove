@@ -1,17 +1,24 @@
 #!/bin/bash
 
 TARGET_DIR=$(awk '$1=="SGOINFRE"{print $2}' .config)
+EXT=$(awk '$1=="FILEEXT"{print $2}' .config)
 
 if [ ! -d "$TARGET_DIR" ]; then
 	echo "sgoinfre not found, wtf??"
 	exit 1
 fi
 
-for file in "$TARGET_DIR"/*.sm; do
-	if [ -f "$(awk '$1=="SCRIPTS"{print $2}' .config)/$(basename "$file")" ]; then
-		echo "Removed: $file"
-		rm -rf "$file"
-	fi
+if [[ $EXT == "" ]]; then
+	echo STALLMAN EXTENSION NOT SET! ABORTING
+	exit 1
+fi
+
+#  After obfuscation update, this now deletes all files with the
+#  extension in config. Could be dangerous if anyone uploaded a file
+#  of the same extension. For now no problems.
+for FILE in "$TARGET_DIR"/*$EXT; do
+	echo "Removed: $FILE"
+	rm -rf "$FILE"
 done
 
 echo "Done removing stallman files."
