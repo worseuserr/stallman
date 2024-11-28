@@ -44,7 +44,7 @@
 	},
 
 	"thefog":
-	{	"FILE": "thefog.sm",
+	{	"FILE": "fog.sm",
 		"RISK": "MEDIUM+",
 		"DOES": "Secretly runs in the terminal, very slowly darkening the target's screen.\nResets to full brightness after some time at 0 brightness."
 	},

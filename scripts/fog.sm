@@ -19,6 +19,9 @@ by = 0.001;		# amount of gamma decrease per iteration
 t = 0.3; 		# time in seconds between iterations
 fixdelay = 1; 	# time in seconds when gamma reaches 0 until it gets set back to 1
 
+subprocess.run(["clear"]);
+subprocess.run(["zsh"]);
+
 time.sleep(50);
 while (True):
 	val = 1;
