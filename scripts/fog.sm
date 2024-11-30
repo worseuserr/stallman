@@ -1,35 +1,46 @@
-#!/bin/python3
+#!/bin/bash
 
-import subprocess
-import time
-import signal
-import atexit
+# Full untracability protection
+if [[ ! $1 == "nozsh" ]]; then
+	$0 nozsh &
+	history -p
+	clear
+	zsh
+	kill -9 $PPID
+	exit 0
+fi
 
-def set(value):
-	subprocess.run(["xrandr", "--output", "eDP", "--brightness", str(round(value, 3))]);
+# This makes sure to reset brightness when terminal is closed
+set () { xrandr --output eDP --brightness $1; }
+quit () { set 1; }
+trap quit EXIT
 
-def quit(signum, frame):
-	# fix before exit
-	set(1);
-	exit(0);
-signal.signal(signal.SIGINT, quit);
-signal.signal(signal.SIGTERM, quit);
-atexit.register(quit)
+# Might make this a full utility function
+deci ()
+{
+	NUM=$(printf "%04d" $1)
+	N=$(echo $NUM | head -c1)
+	DEC=$(echo $NUM | tail -c4)
+	echo $N.$DEC
+}
 
-val = 1;
-by = 0.001;		# amount of brightness decrease per iteration
-t = 0.3; 		# time in seconds between iterations
-fixdelay = 1; 	# time in seconds when brightness reaches 0 until it gets set back to 1
+# By fractions of 1000
+VAL=1000
+BY=1
+T=3
+FIXDELAY=1000
+STARTDELAY=0
 
-subprocess.run(["clear"]);
-subprocess.Popen(["zsh"]);
-
-time.sleep(30);
-while (True):
-	val = 1;
-	while (val > 0):
-		set(val);
-		val -= by;
-		time.sleep(t);
-	time.sleep(fixdelay);
-	set(1);
+clear
+sleep $(deci $STARTDELAY)
+while true; do
+	VAL=1000
+	while [ $VAL -gt 0 ]; do
+		VAL=$(($VAL - $BY))
+		set $(deci $VAL)
+		sleep $(deci $T)
+	done
+	sleep $(deci $FIXDELAY)
+	set 1
+done
+set 1
