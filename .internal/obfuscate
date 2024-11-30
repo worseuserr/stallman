@@ -13,5 +13,11 @@ if [[ ! $OBFUSCATE == "true" ]]; then
 	exit 0
 fi
 
+if [ ! -a ./.tmp/obfuscationtable ]; then
+	touch ./.tmp/obfuscationtable
+fi
+
 OUT=$START$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c $(($LENGTH - $KEEP)))
+
+echo "$1 $OUT.sm" >> ./.tmp/obfuscationtable
 echo $OUT.sm

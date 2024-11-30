@@ -1,12 +1,15 @@
 #!/bin/bash
 
 # This script parses all global variables in a script according to .config
-# Allows %JAIL% to be converted to /thestalledones/ in any script.
+# Example: Allows %JAIL% to be converted to /thestalledones/ in any script.
 # Format: %NAME% where NAME is the exact same as in .config, gets replaced by the right hand side value in .config.
 # Works with both bash and python scripts as it literally edits the script after putting it in sgoinfre.
 
 FILE=$1
 awk '{print $1}' .config | while IFS= read -r ENTRY; do
+	# Get value from .config
 	VALUE=$(awk -v entry="$ENTRY" '$1==entry{print $2}' .config)
+
+	# Replace globals
 	sed -i "s,%$ENTRY%,$VALUE," $FILE
 done

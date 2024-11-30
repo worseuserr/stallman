@@ -21,4 +21,7 @@ for FILE in "$TARGET_DIR"/*$EXT; do
 	rm -rf "$FILE"
 done
 
+# Clear tmp
+rm -rf ./.tmp/*
+
 echo "Done removing stallman files."

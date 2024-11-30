@@ -4,6 +4,7 @@
 ./remove > /dev/null
 
 TARGET_DIR=$(awk '$1=="SGOINFRE"{print $2}' .config)
+EXT=$(awk '$1=="FILEEXT"{print $2}' .config)
 
 if [ ! -d "$TARGET_DIR" ]; then
 	echo "sgoinfre not found, wtf??"
@@ -11,7 +12,7 @@ if [ ! -d "$TARGET_DIR" ]; then
 fi
 
 SCRIPTS=$(awk '$1=="SCRIPTS"{print $2}' .config)
-for FILEPATH in $SCRIPTS/*.sm; do
+for FILEPATH in $SCRIPTS/*$EXT; do
 	if [ -f "$FILEPATH" ]; then
 		chmod 755 "$FILEPATH"
 		FILE="${FILEPATH##*/}"
@@ -21,5 +22,13 @@ for FILEPATH in $SCRIPTS/*.sm; do
 		printf "Copied: %-35s to $FILE\n" $FILEPATH
 	fi
 done
+
+# Set any script cross references to obfuscated versions
+for FILE in $TARGET_DIR/*$EXT; do
+	./.internal/parseobfuscated "$FILE"
+done
+
+# Clear tmp
+rm -rf ./.tmp/*
 
 echo "All stallman files have been copied."
