@@ -29,10 +29,12 @@ VAL=1000
 BY=1
 T=3
 FIXDELAY=1000
-STARTDELAY=0
+
+# In seconds
+STARTDELAY=30
 
 clear
-sleep $(deci $STARTDELAY)
+sleep $STARTDELAY
 while true; do
 	VAL=1000
 	while [ $VAL -gt 0 ]; do
