@@ -49,7 +49,7 @@ while true; do
 		set $(deci $VAL)
 		sleep $(deci $T)
 	done
-	feh -F -Z %MOULFACE%
+	feh -F -Z %MOULFACE% &
 	sleep $(deci $FIXDELAY)
 	set 1
 done

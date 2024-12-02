@@ -50,8 +50,8 @@
 		"DOES": "fog fork but spawns stallman during downtime."
 	},
 
-	"hfog":
-	{	"FILE": "hfog.sm",
+	"gfog":
+	{	"FILE": "gfog.sm",
 		"RISK": "MEDIUM+",
 		"DOES": "fog fork but spawns heavenly stallman during downtime."
 	},

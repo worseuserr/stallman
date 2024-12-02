@@ -49,7 +49,7 @@ while true; do
 		set $(deci $VAL)
 		sleep $(deci $T)
 	done
-	feh -F -Z %HOLYSTALL%
+	feh -F -Z %HOLYSTALL% &
 	sleep $(deci $FIXDELAY)
 	set 1
 done
