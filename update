@@ -1,0 +1,6 @@
+#!/bin/bash
+
+git add --all
+git stash
+git pull
+git stash drop
