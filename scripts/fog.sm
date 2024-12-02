@@ -24,10 +24,17 @@ deci ()
 	echo $N.$DEC
 }
 
-# By fractions of 1000
+# In milliseconds (max 9999)
+# Top value
 VAL=1000
+
+# Value decrease every tick
 BY=1
-T=3
+
+# Time between ticks
+T=300
+
+# Time before screen goes back to full brightness
 FIXDELAY=1000
 
 # In seconds
