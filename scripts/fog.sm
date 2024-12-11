@@ -1,19 +1,43 @@
 #!/bin/bash
 
-# Full untracability protection
-if [[ ! $1 == "nozsh" ]]; then
-	$0 nozsh &
-	history -p
-	clear
-	zsh
-	kill -9 $PPID
-	exit 0
-fi
-
 # This makes sure to reset brightness when terminal is closed
 set () { xrandr --output eDP --brightness $1; }
 quit () { set 1; }
 trap quit EXIT
+
+# Full untracability protection
+function _scriptalivedetector ()
+{
+	while true; do
+		if ! ps -p $SCRPID > /dev/null; then
+			kill -9 $1 > /dev/null
+			kill -9 $2 > /dev/null
+			exit 0
+		fi
+		sleep 0.2
+	done
+}
+function _sysmondetector ()
+{
+	while true; do
+		if [[ ! $(ps aux | grep -v "grep" | grep "gnome-system-monitor") == "" ]]; then
+			kill $1 > /dev/null
+			exit 0
+		fi
+		sleep 0.2
+	done
+}
+if [[ ! $1 == "nozsh" ]]; then
+	$0 nozsh &
+	SCRPID=$!
+	history -p
+	clear
+	_scriptalivedetector $PPID $$ &
+	zsh
+	kill -9 $PPID > /dev/null
+	exit 0
+fi
+_sysmondetector $$ &
 
 # Might make this a full utility function
 deci ()
@@ -38,10 +62,15 @@ T=300
 FIXDELAY=1000
 
 # In seconds
-STARTDELAY=30
+STARTDELAY=5
 
 clear
+set 0.5
 sleep $STARTDELAY
+
+
+set 1
+exit 0
 while true; do
 	VAL=1000
 	while [ $VAL -gt 0 ]; do

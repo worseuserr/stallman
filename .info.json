@@ -66,5 +66,17 @@
 	{	"FILE": "RSTALLMANSWITCHEROO.sm",
 		"RISK": "LOW",
 		"DOES": "Replaces face with the Lord. (backing up original and sending it to .config.JAIL)"
+	},
+
+	"IMPOSTER":
+	{	"FILE": "IMPOSTER.sm",
+		"RISK": "LOW",
+		"DOES": "Noul but a random face from thestalledones."
+	},
+
+	"ghost":
+	{	"FILE": "ghost.sm",
+		"RISK": "LOW",
+		"DOES": "Randomly flashes a face from thestalledones somewhere on the users screen."
 	}
 }
