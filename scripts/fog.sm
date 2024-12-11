@@ -62,15 +62,9 @@ T=300
 FIXDELAY=1000
 
 # In seconds
-STARTDELAY=5
+STARTDELAY=30
 
 clear
-set 0.5
-sleep $STARTDELAY
-
-
-set 1
-exit 0
 while true; do
 	VAL=1000
 	while [ $VAL -gt 0 ]; do
