@@ -11,9 +11,7 @@ if [ ! -d "$TARGET_DIR" ]; then
 	exit 1
 fi
 
-if [ ! -d "tmp/" ]; then
-	mkdir .tmp
-fi
+mkdir .tmp 2> /dev/null
 
 SCRIPTS=$(awk '$1=="SCRIPTS"{print $2}' .config)
 for FILEPATH in $SCRIPTS/*$EXT; do

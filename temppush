@@ -1,10 +1,15 @@
 #!/bin/bash
 
-echo "Pushing for $1 seconds."
+count=$1
+if [[ $1 == "" ]]; then
+	count=2400
+	echo "No duration given, using default of 2400 seconds (40 mins)."
+fi
+
+echo "Pushing for $count seconds."
 
 ./push --force
 
-count=$1
 (( ++count ))
 while (( --count >= 0 )); do
   printf "\rTime left: $count\033[0K"
