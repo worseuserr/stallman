@@ -1,36 +1,22 @@
 #!/bin/bash
 
-# always
-./remove > /dev/null
-
-TARGET_DIR=$(awk '$1=="SGOINFRE"{print $2}' .config)
-EXT=$(awk '$1=="FILEEXT"{print $2}' .config)
-
-if [ ! -d "$TARGET_DIR" ]; then
-	echo "sgoinfre not found, wtf??"
-	exit 1
+count=$1
+if [[ $1 == "" ]]; then
+	count=2400
+	echo "No duration given, using default of 2400 seconds (40 mins)."
 fi
 
-mkdir .tmp 2> /dev/null
+echo "Pushing for $count seconds."
 
-SCRIPTS=$(awk '$1=="SCRIPTS"{print $2}' .config)
-for FILEPATH in $SCRIPTS/*$EXT; do
-	if [ -f "$FILEPATH" ]; then
-		chmod 755 "$FILEPATH"
-		FILE="${FILEPATH##*/}"
-		FILE=$(echo $(./.internal/obfuscate $FILE))
-		cp "$FILEPATH" "$TARGET_DIR/$FILE"
-		./.internal/parseglobals "$TARGET_DIR/$FILE"
-		printf "Copied: %-35s to $FILE\n" $FILEPATH
-	fi
+./.internal/pushscripts --force
+
+(( ++count ))
+while (( --count >= 0 )); do
+  printf "\rTime left: $count\033[0K"
+  sleep 1
 done
+printf "\n"
 
-# Set any script cross references to obfuscated versions
-for FILE in $TARGET_DIR/*$EXT; do
-	./.internal/parseobfuscated "$FILE"
-done
+./remove
 
-# Clear tmp
-rm -rf ./.tmp/*
-
-echo "All stallman files have been copied."
+echo "Time over, files removed."
