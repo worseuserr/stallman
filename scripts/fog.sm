@@ -65,6 +65,7 @@ FIXDELAY=1000
 STARTDELAY=30
 
 clear
+sleep $STARTDELAY
 while true; do
 	VAL=1000
 	while [ $VAL -gt 0 ]; do
