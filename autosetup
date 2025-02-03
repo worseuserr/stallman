@@ -1,0 +1,43 @@
+#!/bin/bash
+
+#  Consult your .config (AUTO* section) before running.
+
+#  Command options:
+#    default (empty): 	Installs stallman.
+#	 uninstall:			Uninstalls stallman.
+#    reinstall:			Uninstalls then installs stallman.
+
+#  This file autoconfigures the Lord's repository to be installed in home.
+#  Creates a launcher in home called sm, so you can do ./sm in a new terminal open it in the repo.
+
+#  DO NOT run this setup from the installation folder, idk what can happen.
+
+DIR="/home/$(whoami)/$(awk '$1=="AUTODIR"{print $2}' .config)"
+CMD=$(awk '$1=="AUTOCMD"{print $2}' .config)
+
+if [[ $1 == "uninstall" ]] || [[ $1 == "reinstall" ]]; then
+	echo "$(tput bold)Removing stallman installation..."
+	rm -rf $DIR ~/$CMD
+	sleep 0.3
+	echo "$(tput setaf 2)Done.$(tput setaf 7)"
+	if [[ $1 == "uninstall" ]]; then
+		exit 0
+	fi
+fi
+
+printf "Config:\n  Directory: $(tput setaf 5)$DIR$(tput setaf 7)\n  Stallman command: $(tput setaf 5)$CMD$(tput setaf 7)\n"
+sleep 1
+echo Creating directory...
+mkdir -p $DIR
+sleep 0.2
+echo Copying stallman...
+cp -r . $DIR
+sleep 0.2
+echo Creating home script for launching stallman...
+sleep 0.2
+cp $DIR/.internal/launcher ~/$CMD
+sed -i "s,CONFIGINSTALLDIR,$(awk '$1=="AUTODIR"{print $2}' .config)," ~/$CMD
+sleep 0.2
+echo "$(tput setaf 2)Complete!"
+sleep 0.1
+echo "$(tput setaf 3)Run ./$CMD in a new terminal to automatically start a stallman session."
