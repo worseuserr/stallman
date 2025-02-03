@@ -15,7 +15,7 @@
 DIR="/home/$(whoami)/$(awk '$1=="AUTODIR"{print $2}' .config)"
 CMD=$(awk '$1=="AUTOCMD"{print $2}' .config)
 
-if [[ $1 == "uninstall" ]] || [[ $1 == "reinstall" ]]; then
+if [[ $1 != "install" ]]; then
 	echo "$(tput bold)Removing stallman installation..."
 	rm -rf $DIR ~/$CMD
 	sleep 0.3
