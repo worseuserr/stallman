@@ -1,21 +1,13 @@
 #!/bin/bash
 
-#  Script to easily start a terminal in your stallman folder.
-#  1. Rename to something like 'sm' and place the file in your home dir.
-#  2. Change INSTALL_DIR to the directory of the cloned repo.
-#  3. Now you can open a terminal and do ./sm (or whatever you named it)
-#     to open a terminal in your stallman clone.
-#
-#   NOTE: Add to PATH if you find a way to. Otherwise add to home and only use ./sm in new terminals.
-#         (because terminal starts in /home)
-#
+#  Script to easily start a terminal in your installed stallman folder.
 
 # Automatically starts at ~, so ~/Documents/ would be just Documents/
-INSTALL_DIR="INSTALLDIRPLACEHOLDER"
-# Is automatically set to the correct install dir when you run autosetup (as long as you leave it as INSTALLDIRPLACEHOLDER).
+INSTALL_DIR="CONFIGINSTALLDIR"
+# Is automatically set to the correct install dir when you run autosetup (as long as you leave it as CONFIGINSTALLDIR).
 
-BANNER="\n  $(tput setaf 6)$(tput bold)STALLMAN inc. terminal.$(tput sgr0)$(tput setaf 6)\n  Running in: ~/$INSTALL_DIR \
-$(tput sgr0)\n\n"
+BANNER="\n  $(tput setaf 160)$(tput bold)STAL$(tput setaf 161)LMAN inc.$(tput setaf 162) termin$(tput setaf 163)al.\t\t\t\t\t$(tput setaf 164)Version $(tput setaf 165)2.0.0$(tput sgr0)$(tput setaf 90)\n  Running in:$(tput setaf 91) ~/$INSTALL_DIR \
+\n  $(tput setaf 92)Available commands: $(tput setaf 93)info push remove update$(tput sgr0)\n\n"
 
 # Start the terminal with initial banner and custom clear alias
 gnome-terminal --title="STALLMAN" --working-directory=$INSTALL_DIR -- zsh -c "printf '$BANNER'; exec zsh"
