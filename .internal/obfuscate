@@ -6,7 +6,7 @@
 OBFUSCATE=$(awk '$1=="OBFUSCATE"{print $2}' .config)
 LENGTH=$(awk '$1=="OBFUSLENGTH"{print $2}' .config)
 KEEP=$(awk '$1=="OBFUSKEEP"{print $2}' .config)
-START=$(echo $1 | head -c2)
+START=$(echo $1 | head -c$KEEP)
 
 if [[ ! $OBFUSCATE == "true" ]]; then
 	echo $1
