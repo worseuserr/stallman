@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# This makes sure to reset brightness when terminal is closed
+set () { xrandr --output eDP --brightness $1; }
+quit () { set 1; }
+trap quit EXIT
+
+# Full untracability protection
+function _scriptalivedetector ()
+{
+	while true; do
+		if ! ps -p $SCRPID > /dev/null; then
+			kill -9 $1 > /dev/null
+			kill -9 $2 > /dev/null
+			exit 0
+		fi
+		sleep 0.2
+	done
+}
+function _sysmondetector ()
+{
+	while true; do
+		if [[ ! $(ps aux | grep -v "grep" | grep "gnome-system-monitor") == "" ]]; then
+			kill $1 > /dev/null
+			exit 0
+		fi
+		sleep 0.2
+	done
+}
+if [[ ! $1 == "nozsh" ]]; then
+	$SCRIPT nozsh &
+	SCRPID=$!
+	history -p
+	clear
+	_scriptalivedetector $PPID $$ &
+	zsh
+	kill -9 $PPID > /dev/null
+	exit 0
+fi
+_sysmondetector $$ &
+
+# Might make this a full utility function
+deci ()
+{
+	NUM=$(printf "%04d" $1)
+	N=$(echo $NUM | head -c1)
+	DEC=$(echo $NUM | tail -c4)
+	echo $N.$DEC
+}
+
+# In milliseconds (max 9999)
+# Top value
+VAL=1000
+
+# Value decrease every tick
+BY=1
+
+# Time between ticks
+T=300
+
+# Time before screen goes back to full brightness
+FIXDELAY=1000
+
+# In seconds
+STARTDELAY=30
+
+clear
+sleep $STARTDELAY
+while true; do
+	VAL=1000
+	while [ $VAL -gt 0 ]; do
+		VAL=$(($VAL - $BY))
+		set $(deci $VAL)
+		sleep $(deci $T)
+	done
+	sleep $(deci $FIXDELAY)
+	set 1
+done
+set 1

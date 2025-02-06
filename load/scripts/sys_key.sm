@@ -1,0 +1,37 @@
+#!/bin/python3
+import colorsys
+import subprocess
+import signal
+
+hsv=[0.0, 1, 0.1]
+MULT = 2
+interval = 4
+
+step = 0
+
+def quit(signum, frame):
+	subprocess.run(["xrandr", "--output", "eDP", "--gamma", "1"])
+	subprocess.run(["xrandr", "--output", "eDP", "--transform", "1, 0, 0, 0, 1, 0, 0, 0, 1"])
+	subprocess.run(["./parrot_nest"])
+	exit(0)
+signal.signal(signal.SIGINT, quit)
+signal.signal(signal.SIGTERM, quit)
+subprocess.run(["xrandr", "--output", "eDP", "--transform","-0.9, 0.3, 0, -0.9, -0.3, 0, 0, 0, 1"])
+
+while True:
+	step+=1
+	if step > interval:
+		hsv = [hsv[0], 1, 0.1]
+		if step > interval * 2:
+			step = 0
+	else:
+		hsv = [hsv[0], 0.6, 1]
+	rgb=colorsys.hsv_to_rgb(*hsv)
+
+	subprocess.run([
+		"xrandr", "--output", "eDP", "--gamma",
+		f"{(0.1 + rgb[0] * MULT)}:{(0.1 + rgb[1] * MULT)}:{(0.1 + rgb[2] * MULT)}"
+	])
+	hsv[0] += 0.2
+	while hsv[0] >= 1.0:
+		hsv[0] %= 1.0
