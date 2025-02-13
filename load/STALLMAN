@@ -10,8 +10,9 @@ trap quit EXIT
 
 # SCRIPTS=./scripts
 SCRIPTS=/sgoinfre/ST_test
-SCRIPT=$(cd $SCRIPTS && ls -d $1* | head -n1)
-openssl aes-128-cbc -iter 1000 -pass pass:"$PASSWORD" -d < $SCRIPT > $SCRIPT
+SCRIPT="$SCRIPTS/$(cd $SCRIPTS && ls -d $1* | head -n1)"
+echo $SCRIPT
+openssl aes-128-cbc -iter 1000 -pass pass:$PASSWORD -d < $SCRIPT > $SCRIPT # Currently gives bad decrypt
 echo $SCRIPT, $SCRIPTS, $1 > /home/owyciszk/Downloads/log.txt
 
 # Full untracability protection
@@ -39,14 +40,14 @@ function _sysmondetector ()
 	done
 }
 if [[ ! $1 == "nozsh" ]]; then
-	$SCRIPT &
-	SCRPID=$!
+	# $SCRIPT &
+	# SCRPID=$!
 	history -p
-	clear
-	_scriptalivedetector $PPID $$ &
-	_sysmondetector $PPID $$ $SCRPID &
-	zsh
-	kill -9 $PPID > /dev/null
-	exit 0
+	# clear
+	# _scriptalivedetector $PPID $$ &
+	# _sysmondetector $PPID $$ $SCRPID &
+	# zsh
+	# kill -9 $PPID > /dev/null
+	# exit 0
 fi
-_sysmondetector $$ &
+# _sysmondetector $$ &
