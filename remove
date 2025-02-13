@@ -17,7 +17,7 @@ fi
 #  extension in config. Could be dangerous if anyone uploaded a file
 #  of the same extension. For now no problems.
 for FILE in "$TARGET_DIR"/*$EXT; do
-	printf "$(tput setaf 177)Removed: $FILE$(tput sgr0)\n"
+	printf "$(tput setaf 177)Removed: $(echo $FILE | cut -c1-45)...$(tput sgr0)\n"
 	rm -rf "$FILE"
 done
 
