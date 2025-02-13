@@ -17,11 +17,11 @@ fi
 #  extension in config. Could be dangerous if anyone uploaded a file
 #  of the same extension. For now no problems.
 for FILE in "$TARGET_DIR"/*$EXT; do
-	echo "Removed: $FILE"
+	printf "$(tput setaf 177)Removed: $FILE$(tput sgr0)\n"
 	rm -rf "$FILE"
 done
 
 # Clear tmp
 rm -rf ./.tmp/*
 
-echo "Done removing stallman files."
+printf "$(tput setaf 121)Done removing stallman files.\n$(tput sgr0)"
