@@ -21,16 +21,17 @@ for FILEPATH in $SCRIPTS/*$EXT; do
 		FILE=$(echo $(./.internal/obfuscate $FILE))
 		cp "$FILEPATH" "$TARGET_DIR/$FILE"
 		./.internal/parseglobals "$TARGET_DIR/$FILE"
-		printf "Copied: %-35s to $FILE\n" $FILEPATH
+		printf "$(tput setaf 103)Copied: %-40s to $(echo $FILE | cut -c1-20)...\n$(tput sgr0)" $FILEPATH
 	fi
 done
 
-# Set any script cross references to obfuscated versions
+# Set any script cross references to the obfuscated versions, then finally encrypt
 for FILE in $TARGET_DIR/*$EXT; do
 	./.internal/parseobfuscated "$FILE"
+	./.internal/encrypt "$FILE"
 done
 
 # Clear tmp
 rm -rf ./.tmp/*
 
-echo "All stallman files have been copied."
+printf "$(tput setaf 121)All stallman files have been copied.\n$(tput sgr0)"
