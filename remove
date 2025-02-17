@@ -19,7 +19,7 @@ for FILE in "$TARGET_DIR"/*$EXT; do
 	rm -rf "$FILE"
 done
 
-printf "$(tput setaf 177)Removed: $TARGET_DIR dir$(tput sgr0)\n"
+printf "$(tput setaf 177)Removed: $TARGET_DIR directory$(tput sgr0)\n"
 # Clear all
 rm -rf ./.tmp/* $TARGET_DIR
 
