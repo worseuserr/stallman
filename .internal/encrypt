@@ -4,6 +4,7 @@ FILE=$1
 EXT=$(awk '$1=="FILEEXT"{print $2}' .config)
 ENABLED=$(awk '$1=="ENCRYPT"{print $2}' .config)
 PASSWORD=$(awk '$1=="ENCRYPTPASS"{print $2}' .config)
+ENCRYPTEXT=$(awk '$1=="ENCRYPTEXT"{print $2}' .config)
 
 if [[ ! $ENABLED == "true" ]]; then
 	echo "encryption skipped"
@@ -13,6 +14,7 @@ fi
 # TEMP=$(echo "$FILE.tmp" | sed "s/${EXT}//" )
 # mv $FILE $TEMP
 # ENCRYPTED=$(
-openssl aes-128-cbc -iter 1000 -pass pass:'${PASSWORD}' < ${FILE} > ${FILE}
+openssl enc -aes-128-cbc -pass pass:"${PASSWORD}" -pbkdf2 -in ${FILE} -out ${FILE}${ENCRYPTEXT}
+rm -rf $FILE
 # )
 # rm -rf $TEMP
