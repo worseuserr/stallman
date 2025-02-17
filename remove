@@ -4,8 +4,8 @@ TARGET_DIR=$(awk '$1=="SGOINFRE"{print $2}' .config)
 EXT=$(awk '$1=="FILEEXT"{print $2}' .config)
 
 if [ ! -d "$TARGET_DIR" ]; then
-	echo "sgoinfre not found, wtf??"
-	exit 1
+	printf "$(tput setaf 121)Already removed.$(tput sgr0)\n"
+	exit 0
 fi
 
 if [[ $EXT == "" ]]; then
@@ -21,7 +21,8 @@ for FILE in "$TARGET_DIR"/*$EXT; do
 	rm -rf "$FILE"
 done
 
-# Clear tmp
-rm -rf ./.tmp/*
+printf "$(tput setaf 177)Removed: $TARGET_DIR dir$(tput sgr0)\n"
+# Clear all
+rm -rf ./.tmp/* $TARGET_DIR
 
 printf "$(tput setaf 121)Done removing stallman files.\n$(tput sgr0)"
