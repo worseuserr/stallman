@@ -1,19 +1,32 @@
 #!/bin/bash
 
-# always
+# Always
 ./remove > /dev/null
 
+STALLMAN=$(awk '$1=="STALLMAN"{print $2}' .config)
 TARGET_DIR=$(awk '$1=="SGOINFRE"{print $2}' .config)
 EXT=$(awk '$1=="FILEEXT"{print $2}' .config)
+OBFUSKEEP=$(awk '$1=="OBFUSKEEP"{print $2}' .config)
+OBFUSCATE=$(awk '$1=="OBFUSCATE"{print $2}' .config)
+ENCRYPTEXT=$(awk '$1=="ENCRYPTEXT"{print $2}' .config)
+SCRIPTS=$(awk '$1=="SCRIPTS"{print $2}' .config)
+PASSWORD=$(awk '$1=="ENCRYPTPASS"{print $2}' .config)
 
-if [ ! -d "$TARGET_DIR" ]; then
-	echo "sgoinfre not found, wtf??"
-	exit 1
+if [[ $OBFUSCATE == "true" ]]; then
+	START=$(basename $TARGET_DIR | head -c5)
+	OUT=$START$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c $((25)))
+	TARGET_DIR="/sgoinfre/$OUT"
 fi
 
-mkdir .tmp 2> /dev/null
+if [ ! -d "$TARGET_DIR" ]; then
+	mkdir $TARGET_DIR
+fi
 
-SCRIPTS=$(awk '$1=="SCRIPTS"{print $2}' .config)
+PASSED=$(echo -e "SCRIPTEXT $EXT 
+ENCRYPTEXT $ENCRYPTEXT 
+PASSWORD $PASSWORD 
+TARGET $TARGET_DIR")
+
 for FILEPATH in $SCRIPTS/*$EXT; do
 	if [ -f "$FILEPATH" ]; then
 		chmod 755 "$FILEPATH"
@@ -21,17 +34,27 @@ for FILEPATH in $SCRIPTS/*$EXT; do
 		FILE=$(echo $(./.internal/obfuscate $FILE))
 		cp "$FILEPATH" "$TARGET_DIR/$FILE"
 		./.internal/parseglobals "$TARGET_DIR/$FILE"
-		printf "$(tput setaf 103)Copied: %-40s to $(echo $FILE | cut -c1-20)...\n$(tput sgr0)" $FILEPATH
+		printf "$(tput setaf 103)Copied: %-25s to $(echo $FILE | cut -c1-20)...\n$(tput sgr0)" $(basename $FILEPATH)
 	fi
 done
+printf "$(tput setaf 177)Releasing the STALLMAN...\n$(tput sgr0)" $(basename $FILEPATH)
+sleep 0.25
+STL="/sgoinfre/$(echo $(./.internal/obfuscate $(basename $STALLMAN)))"
+cp $STALLMAN $STL
+while read PAIR; do
+	ENTRY=$(echo $PAIR | awk '{print $1}')
+	# Get value from lookup
+	VALUE=$(echo $PAIR | awk -v entry="$ENTRY" '$1==entry{print $2}')
+	# Replace special globals
+	sed -i "s,~$ENTRY~,$VALUE," $STL
+	printf "$(tput setaf 103)Parsed: $ENTRY...\n"
+done <<< $PASSED
+sleep 0.3
 
-# Set any script cross references to the obfuscated versions, then finally encrypt
+# Encrypt
 for FILE in $TARGET_DIR/*$EXT; do
-	./.internal/parseobfuscated "$FILE"
 	./.internal/encrypt "$FILE"
+	printf "$(tput setaf 103)Encrypted: $(basename $FILE | cut -c1-46)...\n"
 done
 
-# Clear tmp
-rm -rf ./.tmp/*
-
-printf "$(tput setaf 121)All stallman files have been copied.\n$(tput sgr0)"
+printf "$(tput setaf 121)STALLMAN is ready. Prefix: /sgoinfre/$(echo STALLMAN | cut -c1-$OBFUSKEEP) (tab)\n$(tput sgr0)"
