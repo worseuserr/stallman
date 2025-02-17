@@ -13,9 +13,7 @@ if [[ $EXT == "" ]]; then
 	exit 1
 fi
 
-#  After obfuscation update, this now deletes all files with the
-#  extension in config. Could be dangerous if anyone uploaded a file
-#  of the same extension. For now no problems.
+# Script folder is now pushed completely so there should be no problems with deleting other peoples .sm files
 for FILE in "$TARGET_DIR"/*$EXT; do
 	printf "$(tput setaf 177)Removed: $(echo $FILE | cut -c1-45)...$(tput sgr0)\n"
 	rm -rf "$FILE"
