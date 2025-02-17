@@ -14,12 +14,20 @@ if [[ $EXT == "" ]]; then
 fi
 
 # Script folder is now pushed completely so there should be no problems with deleting other peoples .sm files
-for FILE in "$TARGET_DIR"/*$EXT; do
+for DIR in /sgoinfre/*; do
+	if [[ -d $DIR ]]; then
+		if [[ ! $(ls $DIR | grep "$EXT") == "" ]]; then
+			printf "$(tput setaf 177)Removed: from $TARGET_DIR directory$(tput sgr0)\n"
+			rm -rf "$DIR/*$EXT"
+		fi
+	fi
+done
+# Nvm
+for FILE in /sgoinfre/*$EXT; do
 	printf "$(tput setaf 177)Removed: $(echo $FILE | cut -c1-45)...$(tput sgr0)\n"
 	rm -rf "$FILE"
 done
 
-printf "$(tput setaf 177)Removed: $TARGET_DIR directory$(tput sgr0)\n"
 # Clear all
 rm -rf ./.tmp/* $TARGET_DIR
 
