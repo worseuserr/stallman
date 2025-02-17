@@ -78,5 +78,12 @@
 	{	"FILE": "ghost.sm",
 		"RISK": "LOW",
 		"DOES": "Randomly flashes a face from thestalledones somewhere on the users screen."
+	},
+
+	"STALLMAN":
+	{
+		"FILE": "STALLMAN",
+		"RISK": "N/A",
+		"DOES": "The main stallman script executor, used to invoke scripts on victims.\nEnsures safe and undetectable execution of scripts.\nUsage: /sgoinfre/STALLMAN {script name}"
 	}
 }

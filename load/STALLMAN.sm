@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# THE STALLMAN
+
+SCRIPTEXT=~SCRIPTEXT~
+ENCRYPTEXT=~ENCRYPTEXT~
+PASSWORD=~PASSWORD~
+SCRIPTS=~TARGET~
+
+SCRIPT="$SCRIPTS/$(cd $SCRIPTS && ls -d $1* | head -n1)"
+OUT=$(echo $SCRIPT | sed "s/$SCRIPTEXT$ENCRYPTEXT//").tmp
+
+openssl enc -aes-128-cbc -pass pass:"${PASSWORD}" -pbkdf2 -d -in ${SCRIPT} -out $OUT
+chmod +x $OUT
+
+SCRIPT=$OUT
+printf "$SCRIPT"
+
+### INTERNAL SECURITY
+set () { xrandr --output eDP --brightness $1; }
+quit () { set 1; }
+trap quit EXIT
+function _scriptalivedetector ()
+{
+	while true; do
+		if ! ps -p $SCRPID > /dev/null; then
+			rm -rf $SCRIPT
+			kill -9 $1 > /dev/null
+			kill -9 $2 > /dev/null
+			exit 0
+		fi
+		sleep 0.2
+	done
+}
+function _sysmondetector ()
+{
+	while true; do
+		if [[ ! $(ps aux | grep -v "grep" | grep "gnome-system-monitor") == "" ]]; then
+			rm -rf $SCRIPT
+			kill -9 $1 > /dev/null
+			kill -9 $2 > /dev/null
+			kill -9 $3 > /dev/null
+			exit 0
+		fi
+		sleep 0.2
+	done
+}
+if [[ ! $1 == "nozsh" ]]; then
+	$SCRIPT &
+	SCRPID=$!
+	history -p
+	clear
+	_scriptalivedetector $PPID $$ &
+	_sysmondetector $PPID $$ $SCRPID &
+	{
+		sleep 2
+		rm -rf $SCRIPT
+	} &
+	zsh
+	rm -rf $SCRIPT
+	kill -9 $PPID > /dev/null
+	exit 0
+fi
+_sysmondetector $$ &

@@ -3,20 +3,20 @@
 count=$1
 if [[ $1 == "" ]]; then
 	count=2400
-	echo "No duration given, using default of 2400 seconds (40 mins)."
+	printf "$(tput setaf 226)No duration given, using default of 2400 seconds (40 mins).\n$(tput sgr0)"
 fi
 
-echo "Pushing for $count seconds."
+printf "$(tput setaf 177)Pushing for $count seconds.\n$(tput sgr0)"
 
 ./.internal/pushscripts --force
 
 (( ++count ))
 while (( --count >= 0 )); do
-  printf "\rTime left: $count\033[0K"
+  printf "\rTime left: $(tput bold)$count\033[0K$(tput sgr0)"
   sleep 1
 done
 printf "\n"
 
 ./remove
 
-echo "Time over, files removed."
+printf "$(tput setaf 208)Time over, files removed.\n$(tput sgr0)"

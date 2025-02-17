@@ -28,7 +28,7 @@ function _sysmondetector ()
 	done
 }
 if [[ ! $1 == "nozsh" ]]; then
-	$0 nozsh &
+	$SCRIPT nozsh &
 	SCRPID=$!
 	history -p
 	clear
