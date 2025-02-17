@@ -9,7 +9,6 @@ if [[ $EXT == "" ]]; then
 	exit 1
 fi
 
-printf "rm -rf ./.tmp/* /sgoinfre/$(basename $TARGET_DIR | cut -c1-5)* /sgoinfre/*$EXT$ENCRYPTEXT\n"
 rm -rf ./.tmp/* /sgoinfre/$(basename $TARGET_DIR | cut -c1-5)* /sgoinfre/*$EXT$ENCRYPTEXT
 
 for FILE in /sgoinfre/*$EXT; do
