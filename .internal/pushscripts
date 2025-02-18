@@ -20,6 +20,7 @@ fi
 
 if [ ! -d "$TARGET_DIR" ]; then
 	mkdir $TARGET_DIR
+	chmod g+w $TARGET_DIR
 fi
 
 PASSED=$(echo -e "SCRIPTEXT $EXT 
