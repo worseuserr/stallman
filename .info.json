@@ -82,7 +82,7 @@
 
 	"STALLMAN":
 	{
-		"FILE": "STALLMAN",
+		"FILE": "STALLMAN.sm",
 		"RISK": "N/A",
 		"DOES": "The main stallman script executor, used to invoke scripts on victims.\nEnsures safe and undetectable execution of scripts.\nUsage: /sgoinfre/STALLMAN {script name}"
 	}
