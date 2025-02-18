@@ -15,6 +15,7 @@ def output(file, data):
 	strn = f"{('-'*border) if count<2 else ''}\n\nEntry: {file}\n\n\tFile name:   {data['FILE']}\n\tRisk:        {data['RISK']}\n\tDescription: {does}\n\n{'-'*border}"
 	print(strn, end = '')
 
+
 arg = sys.argv[1]
 count = 0
 border = 50
@@ -26,10 +27,13 @@ with open('.info.json', 'r') as file:
 		print(f"{('-'*border)}\n\nEntry: RISK\n\n\tRISK: {infoList['RISK']}\n\n{'-'*border}")
 		exit(0)
 	for file, data in infoList.items():
-		if (arg.lower() in file.lower() or (arg == "all" and file != "RISK")):
+		if (arg.lower() in file.lower() or ((arg == "all" or arg == "list") and file != "RISK")):
 			count += 1
-			output(file, data)
+			if (arg == "list"):
+				print(data['FILE'])
+			else:
+				output(file, data)
 	if (count == 0):
 		print(f"No entries found for '{arg}'.")
 		exit(1)
-	print('\n')
+	
