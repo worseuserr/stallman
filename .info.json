@@ -1,28 +1,16 @@
 {
 	"RISK": "Risk to a target when a script is used on them. || How likely we are to get in trouble for using it.",
 
-	"MOUL":
-	{	"FILE": "MOUL.sm",
-		"RISK": "LOW",
-		"DOES": "Spawns a terminal that makes stallman appear every 2-5 mins.\nBest for Piscine since the temrinal says 'you've been stallman'd'"
-	},
-
-	"EMOUL":
-	{	"FILE": "EMOUL.sm",
-		"RISK": "LOW",
-		"DOES": "MOUL fork but with flashbang."
-	},
-
 	"NOUL":
 	{	"FILE": "NOUL.sm",
 		"RISK": "MEDIUM",
-		"DOES": "The base for all stallman scripts. Secretly runs in the terminal\nwhere it's used, spawning a stallman."
+		"DOES": "The base for all stallman scripts.\nSecretly runs in the terminal\nwhere it's used, spawning a stallman."
 	},
 
 	"ENOUL":
 	{	"FILE": "ENOUL.sm",
 		"RISK": "MEDIUM",
-		"DOES": "The base for all stallman flashbang scripts. NOUL fork but with flashbang."
+		"DOES": "The base for all stallman flashbang scripts.\nNOUL fork but with flashbang."
 	},
 
 
@@ -41,31 +29,31 @@
 	"fog":
 	{	"FILE": "fog.sm",
 		"RISK": "MEDIUM+",
-		"DOES": "Secretly runs in the terminal, very slowly darkening the target's screen.\nResets to full brightness after some time at 0 brightness."
+		"DOES": "Secretly runs in the terminal, very slowly darkening\nthe target's screen.\nResets to full brightness after some time at 0 brightness."
 	},
 
 	"sfog":
 	{	"FILE": "sfog.sm",
 		"RISK": "MEDIUM+",
-		"DOES": "fog fork but spawns stallman during downtime."
+		"DOES": "fog fork but spawns stallman during black screen."
 	},
 
 	"gfog":
 	{	"FILE": "gfog.sm",
 		"RISK": "MEDIUM+",
-		"DOES": "fog fork but spawns heavenly stallman during downtime."
+		"DOES": "fog fork but spawns heavenly stallman during black screen."
 	},
 
 	"sys_key":
 	{	"FILE": "sys_key.sm",
 		"RISK": "DO NOT",
-		"DOES": "Recursively spawns xrandr, itself, and disables all user input.\nResult can vary from inability to log out to completely crashing the pc."
+		"DOES": "Recursively spawns xrandr, itself,\nand disables all user input.\nResult can vary from inability to log out to\ncompletely crashing the pc."
 	},
 
 	"RSTALLMANSWITCHEROO":
 	{	"FILE": "RSTALLMANSWITCHEROO.sm",
 		"RISK": "LOW",
-		"DOES": "Replaces face with the Lord. (backing up original and sending it to .config.JAIL)"
+		"DOES": "Replaces face with the Lord. (backing up\noriginal and sending it to .config.JAIL)"
 	},
 
 	"IMPOSTER":
@@ -77,13 +65,13 @@
 	"ghost":
 	{	"FILE": "ghost.sm",
 		"RISK": "LOW",
-		"DOES": "Randomly flashes a face from thestalledones somewhere on the users screen."
+		"DOES": "Randomly flashes a face from thestalledones\nsomewhere on the users screen."
 	},
 
 	"STALLMAN":
 	{
 		"FILE": "STALLMAN.sm",
 		"RISK": "N/A",
-		"DOES": "The main stallman script executor, used to invoke scripts on victims.\nEnsures safe and undetectable execution of scripts.\nUsage: /sgoinfre/STALLMAN {script name}"
+		"DOES": "The main stallman script executor,\nused to invoke scripts on victims.\nEnsures safe and undetectable execution of scripts.\nUsage: /sgoinfre/STALLMAN {script name}"
 	}
 }
