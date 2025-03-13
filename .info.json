@@ -13,7 +13,6 @@
 		"DOES": "The base for all stallman flashbang scripts.\nNOUL fork but with flashbang."
 	},
 
-
 	"MEMcheck":
 	{	"FILE": "MEMcheck.sm",
 		"RISK": "LOW",
