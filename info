@@ -18,7 +18,7 @@ def output(file, data):
 
 arg = sys.argv[1]
 count = 0
-border = 50
+border = 80
 if (arg[-3:] == '.sm'):
 	arg = arg[:-3]
 with open('.info.json', 'r') as file:
