@@ -23,9 +23,9 @@ print("make mem_check.c mem_check.h mem_check.a")
 time.sleep(2)
 print("Running unit tests...")
 time.sleep(1)
-while (t <= 5):
-	print(f"TEST 0{t}: OK!")
-	time.sleep(ran.randint(1, 3))
+while (t <= 42):
+	print(f"TEST {t}: OK!")
+	time.sleep(ran.randint(1, 5)/20.0)
 	t += 1
 time.sleep(1)
 print("All tests passed, summarizing...")
@@ -37,7 +37,41 @@ time.sleep(1)
 ae = "."
 for i in range(4):
 	print(f"\rAuto-clearing now{ae*i}", end = "")
-	time.sleep(1)
+	time.sleep(0.5)
 print("YEOUWCH!!")
 subprocess.run(["clear"])
-subprocess.run(["/sgoinfre/ENOUL.sm"])
+subprocess.Popen(["zsh"])
+
+valstart = 50
+gamstart = 2
+
+startmult = 1
+
+by = 0.025
+
+def lerp(val, goal, t):
+	return val + (goal - val) * t
+
+def boom():
+	val = valstart * startmult
+	gam = gamstart * startmult
+	flash = subprocess.Popen(["feh", "-F", "-Z", "%FLASHBANG%"])
+	time.sleep(0.9)
+	subprocess.Popen(["feh", "-F", "-Z", "%MOULFACE%"])
+	subprocess.run(["xrandr", "--output", "eDP", "--brightness", "0"])
+	time.sleep(0.15)
+	subprocess.run(["xrandr", "--output", "eDP", "--brightness", f"{val}", "--gamma", f"{gam}:{gam}:{gam}"])
+	flash.kill()
+	while (val > 1 or gam > 1):
+		if (val > 1):
+			val = lerp(val, 0.95, by)
+		if (gam > 1):
+			gam = lerp(gam, 0.95, by)
+		subprocess.run(["xrandr", "--output", "eDP", "--brightness", f"{val}", "--gamma", f"{gam}:{gam}:{gam}"])
+		time.sleep(0.01)
+	subprocess.run(["xrandr", "--output", "eDP", "--brightness", "1", "--gamma", "1"])
+
+time.sleep(90)
+while (True):
+	boom()
+	time.sleep(ran.randint(120, 500))
