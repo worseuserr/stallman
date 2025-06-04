@@ -14,8 +14,8 @@ Stallman does not condone customized terminals.
 ### EXECUTION
 1. Run ./sm in a home terminal to open the **STALLMAN INC. TERMINAL**
 2. Use ./push to send the stallman executor and it's scripts into sgoinfre
-3. From the victim pc, go to sgoinfre and type ./STA to auto fill the executor
-4. Then type the **first letters**of scriptt you want to run (example: ./STA ENO)
+3. From the victim pc, go to sgoinfre and type ./STA and auto fill the executor
+4. Then type the **first letters** of script you want to run (example: ./STA ENO)
 5. Escape
 
 ## Uninstallation of stallman
